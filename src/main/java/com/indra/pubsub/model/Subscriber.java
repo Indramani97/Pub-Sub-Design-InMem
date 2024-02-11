@@ -1,7 +1,10 @@
 package com.indra.pubsub.model;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.concurrent.atomic.AtomicInteger;
 
+@Slf4j
 public class Subscriber implements SubscriberIface{
 
     private final String id;
@@ -27,8 +30,8 @@ public class Subscriber implements SubscriberIface{
 
     @Override
     public void consume(Message message) throws InterruptedException {
-        System.out.println("Subscriber: " + id + " started consuming: " + message.getMessage());
+        log.info("Subscriber {} started consuming message [{}]", id, message.getMessage());
         Thread.sleep(sleepInterval);
-        System.out.println("Subscriber: " + id + " done consuming: " + message.getMessage());
+        log.info("Subscriber {} done consuming message [{}]", id, message.getMessage());
     }
 }
